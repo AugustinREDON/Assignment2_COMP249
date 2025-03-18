@@ -14,4 +14,6 @@ public abstract class Deductions {
         return grossSalary;
     }
 
+    public abstract double calculateTax(Employee employee);
+
 }
