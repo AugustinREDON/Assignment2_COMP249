@@ -7,8 +7,6 @@ class MinimumWageException extends Exception{
     }
 }
 
-
-
 public class Main {
 
     public static void main(String[] args)throws FileNotFoundException,IOException{
