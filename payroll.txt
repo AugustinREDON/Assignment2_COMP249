@@ -1,1 +1,7 @@
 1 Jacob Paterak 15.5 18
+2 Emily Johnson 40 20.5  
+3 Michael Smith 25.5 16.75  
+4 Sophia Martinez 30 22.25  
+5 Daniel Brown 35.5 19.8  
+6 Olivia Wilson 20 17.5  
+

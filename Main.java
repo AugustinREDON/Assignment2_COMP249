@@ -1,9 +1,6 @@
 import java.util.Scanner;
 import java.io.*;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
 class MinimumWageException extends Exception{
     public MinimumWageException(String m){
         super(m);
@@ -25,7 +22,7 @@ public class Main {
 
         Employee[] employees = new Employee[10];
         int count = 0;
-        Employee e1;
+
 
         //File Paths
         String filePath = "payroll.txt";
@@ -39,8 +36,12 @@ public class Main {
 
             if(!sc.hasNext()){
                 System.out.println("Error: Empty file!");
+                sc.close();
                 return;
+
             }
+
+            BufferedWriter bwError = new BufferedWriter(new FileWriter(errorFIle));
 
             while(sc.hasNextLine()) {
                 try {
@@ -51,19 +52,28 @@ public class Main {
                     double HourlyWage = sc.nextDouble();
 
                     if(HourlyWage  < 15.75){
-                        throw new MinimumWageException("You are paid below minimum wage!");
+                        throw new MinimumWageException("Error: " + EmployeeFirstName + " " + EmployeeLastName + "is paid below minimum wage.");
                     }
 
-                    Employee emp = new Employee(EmployeeNumber, EmployeeFirstName, EmployeeLastName, HourlyWage, HoursWorked);
-                    employees[count++] = emp;
+                    employees[count++] = new Employee(EmployeeNumber, EmployeeFirstName, EmployeeLastName, HourlyWage, HoursWorked);
+                    //employees[count++] = emp;
                 } catch (Exception e){
-                    e.getMessage();
+
+                    bwError.write(e.getMessage() + "\n");
+                    System.out.println(e.getMessage() + "while loop error");
+
+                    if(sc.hasNextLine()){
+                        sc.nextLine();
+                    }
+  
                 }
 
-            } 
+            }
  
             for(int i = 0; i < count; i++){
+
                 Employee emp = employees[i];
+
                 // Create deduction objects for this employee
                 EI ei = new EI(emp);
                 QPP qpp = new QPP(emp);
@@ -79,20 +89,24 @@ public class Main {
                 double netSalary = emp.getGrossSalary() - totalDeductions;
 
                 // Write to report file
-                bw.write(String.format("%-10d %-10s %-10s $%-11.2f $%-11.2f $%-11.2f\n",
-                      emp.getEmployeeId(), emp.getFirstName(), emp.getLastName(),
-                      emp.getGrossSalary(), totalDeductions, netSalary));
+                bw.write(String.format("%-10s %-10s %-10s $%-11.2f $%-11.2f $%-11.2f\n",
+                    emp.getEmployeeId(), emp.getFirstName(), emp.getLastName(),
+                    emp.getGrossSalary(), totalDeductions, netSalary));
+          
             }
 
             System.out.println("Payroll processing completed. Check payrollReport.txt and payrollError.txt");
-
+            
+            bwError.close();
+            sc.close();
         } catch(FileNotFoundException e){
             System.out.println("Error: file " + filePath + "not found");
         } catch (IOException e){
             System.out.println("Error writing to files");
-        }
+        } 
 
 
+        bw.close();
     }
     
 }
