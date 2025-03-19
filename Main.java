@@ -15,64 +15,81 @@ class MinimumWageException extends Exception{
 public class Main {
 
     public static void main(String[] args)throws FileNotFoundException,IOException{
+        System.out.println("Test");
+
 
         BufferedReader br = new BufferedReader(new FileReader("payroll.txt"));
         BufferedWriter bw = new BufferedWriter(new FileWriter("payrollReport.txt"));
 
-        Scanner sc = new Scanner(br);
-        Employee[] Employees = new Employee[10];
+
+
+        Employee[] employees = new Employee[10];
         int count = 0;
         Employee e1;
+
+        //File Paths
         String filePath = "payroll.txt";
+        String reportPath = "payrollReport.txt";
+        String errorFIle = "payrollError.txt";
 
 
         try{
 
-            if(sc.hasNextLine()) {
-                long numLines = Files.lines(Paths.get(filePath)).count();
-                for (int i = 0; i < numLines; i++) {
+            Scanner sc = new Scanner(br);
+
+            if(!sc.hasNext()){
+                System.out.println("Error: Empty file!");
+                return;
+            }
+
+            while(sc.hasNextLine()) {
+                try {
                     Long EmployeeNumber = sc.nextLong();
                     String EmployeeFirstName = sc.next();
                     String EmployeeLastName = sc.next();
                     double HoursWorked = sc.nextDouble();
                     double HourlyWage = sc.nextDouble();
-                    if(HourlyWage>15.75) {
 
-                        Employees[count] = new Employee(EmployeeNumber, EmployeeFirstName, EmployeeLastName, HoursWorked , HourlyWage);
-                        count++;
-                        }
-                    else
-                        throw new MinimumWageException("You are paid below minimum wage");
+                    if(HourlyWage  < 15.75){
+                        throw new MinimumWageException("You are paid below minimum wage!");
+                    }
 
-
+                    Employee emp = new Employee(EmployeeNumber, EmployeeFirstName, EmployeeLastName, HourlyWage, HoursWorked);
+                    employees[count++] = emp;
+                } catch (Exception e){
+                    e.getMessage();
                 }
 
+            } 
+ 
+            for(int i = 0; i < count; i++){
+                Employee emp = employees[i];
+                // Create deduction objects for this employee
+                EI ei = new EI(emp);
+                QPP qpp = new QPP(emp);
+                QPIP qpip = new QPIP(emp);
+                ProvincialIncomeTax provTax = new ProvincialIncomeTax(emp);
+                FederalIncomeTax fedTax = new FederalIncomeTax(emp);
+
+                // Calculate total deductions
+                double totalDeductions = ei.calculateTax() + qpp.calculateTax() +
+                      qpip.calculateTax() + provTax.calculateTax() + fedTax.calculateTax();
+
+                // Calculate net salary
+                double netSalary = emp.getGrossSalary() - totalDeductions;
+
+                // Write to report file
+                bw.write(String.format("%-10d %-10s %-10s $%-11.2f $%-11.2f $%-11.2f\n",
+                      emp.getEmployeeId(), emp.getFirstName(), emp.getLastName(),
+                      emp.getGrossSalary(), totalDeductions, netSalary));
             }
-            else
-                System.out.println("Empty file");
-        }
-       catch(Exception e)
-        {
 
-        }
-        try
-        {
-            bw.write(" iDroid Solutions\n");
-            bw.write("Employee Number\t First Name\t Last Name\t Gross salary\t Deductions\t Net salary\n");
-            bw.write("--------------------------------------------------------------------------------------------------------------------\n");
-            for(int i = 0; i<Employees.length; i++) {
+            System.out.println("Payroll processing completed. Check payrollReport.txt and payrollError.txt");
 
-                if(Employees[i]!=null) {
-                    System.out.println(i);
-                    bw.write(Employees[i].toString());
-                }
-            }
-
-            bw.close();
-        }
-        catch(Exception e)
-        {
-
+        } catch(FileNotFoundException e){
+            System.out.println("Error: file " + filePath + "not found");
+        } catch (IOException e){
+            System.out.println("Error writing to files");
         }
 
 

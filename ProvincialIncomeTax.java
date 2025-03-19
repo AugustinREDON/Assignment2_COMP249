@@ -1,12 +1,12 @@
 public class ProvincialIncomeTax extends Deductions{
 
-    public ProvincialIncomeTax(double grossSalary){
-        super(grossSalary);
+    public ProvincialIncomeTax(Employee employee){
+        super(employee);
     }
 
     @Override
     public double calculateTax(){
-        double taxableIncome = grossSalary;
+        double taxableIncome = employee.getGrossSalary();
         double tax = 0.0;
         
         if(taxableIncome > 129590){

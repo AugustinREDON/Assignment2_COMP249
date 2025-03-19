@@ -1,5 +1,5 @@
-public class Employee
-{
+public class Employee{
+
     private long EmployeeId;
     private String FirstName;
     private String LastName;
@@ -7,21 +7,36 @@ public class Employee
     private double HoursWorked;
     private double GrossSalary;
     final int week = 52;
+
     public Employee(Long id, String firstName, String lastName,double HourlyWage, double HoursWorked) {
         this.EmployeeId = id;
         this.FirstName = firstName;
         this.LastName = lastName;
         this.HourlyWage = HourlyWage;
         this.HoursWorked = HoursWorked;
-        this.GrossSalary = HourlyWage * HoursWorked *week;
+        this.GrossSalary = HourlyWage * HoursWorked * week;
 
     }
-    public double getGrossSalary()
-    {
+    public double getGrossSalary(){
         return this.GrossSalary;
     }
-    public String toString()
-    {
+
+    public double getEmployeeId(){
+        return EmployeeId;
+    }
+
+    public String getFirstName(){
+        return FirstName;
+    }
+
+    public String getLastName(){
+        return LastName;
+    }
+
+    public String toString(){
         return EmployeeId + "\t" + FirstName + "\t" + LastName + "\t" + GrossSalary;
     }
+
+
+
 }
