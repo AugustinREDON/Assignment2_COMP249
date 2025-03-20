@@ -22,6 +22,7 @@ public class Main {
         int count = 0;
         int totalLinesRead = -1;
         int errorLinesRead = -1;
+        boolean caught = true;
 
 
         //File Paths
@@ -41,7 +42,8 @@ public class Main {
                 return;
 
             }
-
+            BufferedReader br2 = new BufferedReader(new FileReader(errorFile));
+            Scanner Error = new Scanner(br2);
             BufferedWriter bwError = new BufferedWriter(new FileWriter(errorFile));
             bwError.write("> Error lines found in payroll \n");
             System.out.println("> Reading file payroll...");
@@ -66,8 +68,12 @@ public class Main {
                     //employees[count++] = emp;
                 } catch (Exception e){
                     errorLinesRead++;
+                   if(caught)
+                       System.out.println("> Error lines found in file payroll");
+                   caught = false;
                     try{
                         bwError.write(line.toUpperCase() + "\n");
+                        System.out.println(line);
                     } catch (IOException ioException){
                         System.out.println("Failed to write to the error file: " + ioException.getMessage());
                     }
