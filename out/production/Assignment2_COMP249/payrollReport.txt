@@ -1,0 +1,3 @@
+ iDroid Solutions
+Employee Number	 First Name	 Last Name	 Gross salary	 Deductions	 Net salary
+--------------------------------------------------------------------------------------------------------------------1	Jacob	Paterak	14508.0
