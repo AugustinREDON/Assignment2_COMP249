@@ -31,6 +31,7 @@ public class Main {
         try{
 
             Scanner sc = new Scanner(br);
+            System.out.println("> Opening file payroll...");
 
             if(!sc.hasNext()){
                 System.out.println("Error: Empty file!");
@@ -40,6 +41,7 @@ public class Main {
             }
 
             BufferedWriter bwError = new BufferedWriter(new FileWriter(errorFIle));
+            System.out.println("> Reading file payroll...");
 
             while(sc.hasNextLine()) {
                 try {
@@ -67,6 +69,12 @@ public class Main {
                 }
 
             }
+
+            bw.write(String.format("%50s\n", "iDroid Solutions"));
+            bw.write(String.format("%55s\n", "-----------------------"));
+            bw.write(String.format("%-20s %-15s %-15s %-15s %-15s %-15s\n", 
+                "Employee Number", "First name", "Last Name", "Gross salary", "Deductions", "Net salary"));
+            bw.write("-------------------------------------------------------------------------------------------------------\n");
  
             for(int i = 0; i < count; i++){
 
@@ -87,7 +95,7 @@ public class Main {
                 double netSalary = emp.getGrossSalary() - totalDeductions;
 
                 // Write to report file
-                bw.write(String.format("%-10s %-10s %-10s $%-11.2f $%-11.2f $%-11.2f\n",
+                bw.write(String.format("%-20s %-15s %-15s $%-14.2f $%-14.2f $%-14.2f\n",
                     emp.getEmployeeId(), emp.getFirstName(), emp.getLastName(),
                     emp.getGrossSalary(), totalDeductions, netSalary));
           

@@ -1,6 +1,10 @@
-1.0        Jacob      Paterak    $14508.00    $1876.46     $12631.54
-2.0        Emily      Johnson    $42640.00    $5515.06     $37124.94
-3.0        Michael    Smith      $22210.50    $2872.71     $19337.79
-4.0        Sophia     Martinez   $34710.00    $4489.39     $30220.61
-5.0        Daniel     Brown      $36550.80    $4727.48     $31823.32
-6.0        Olivia     Wilson     $18200.00    $2353.99     $15846.01
+                                  iDroid Solutions
+                                -----------------------
+Employee Number      First name      Last Name       Gross salary    Deductions      Net salary     
+-------------------------------------------------------------------------------------------------------
+1.0                  Jacob           Paterak         $14508.00       $6664.10        $7843.90       
+2.0                  Emily           Johnson         $42640.00       $11484.66       $31155.34      
+3.0                  Michael         Smith           $22210.50       $5982.18        $16228.32      
+4.0                  Sophia          Martinez        $34710.00       $9348.79        $25361.21      
+5.0                  Daniel          Brown           $36550.80       $9844.59        $26706.21      
+6.0                  Olivia          Wilson          $18200.00       $2353.99        $15846.01      
