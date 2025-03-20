@@ -25,11 +25,11 @@ public class Main {
         //File Paths
         String filePath = "payroll.txt";
         String reportPath = "payrollReport.txt";
-        String errorFIle = "payrollError.txt";
+        String errorFile = "payrollError.txt";
 
 
         try{
-
+            
             Scanner sc = new Scanner(br);
             System.out.println("> Opening file payroll...");
 
@@ -40,16 +40,21 @@ public class Main {
 
             }
 
-            BufferedWriter bwError = new BufferedWriter(new FileWriter(errorFIle));
+            BufferedWriter bwError = new BufferedWriter(new FileWriter(errorFile));
+            bwError.write("> Error lines found in payroll \n");
             System.out.println("> Reading file payroll...");
 
             while(sc.hasNextLine()) {
+                String line = sc.nextLine();
                 try {
-                    Long EmployeeNumber = sc.nextLong();
-                    String EmployeeFirstName = sc.next();
-                    String EmployeeLastName = sc.next();
-                    double HoursWorked = sc.nextDouble();
-                    double HourlyWage = sc.nextDouble();
+
+                    Scanner lineScanner = new Scanner(line);
+                    lineScanner.useDelimiter("\\s+");
+                    Long EmployeeNumber = lineScanner.nextLong();
+                    String EmployeeFirstName = lineScanner.next();
+                    String EmployeeLastName = lineScanner.next();
+                    double HoursWorked = lineScanner.nextDouble();
+                    double HourlyWage = lineScanner.nextDouble();
 
                     if(HourlyWage  < 15.75){
                         throw new MinimumWageException("Error: " + EmployeeFirstName + " " + EmployeeLastName + "is paid below minimum wage.");
@@ -58,12 +63,10 @@ public class Main {
                     employees[count++] = new Employee(EmployeeNumber, EmployeeFirstName, EmployeeLastName, HourlyWage, HoursWorked);
                     //employees[count++] = emp;
                 } catch (Exception e){
-
-                    bwError.write(e.getMessage() + "\n");
-                    System.out.println(e.getMessage() + "while loop error");
-
-                    if(sc.hasNextLine()){
-                        sc.nextLine();
+                    try{
+                        bwError.write(line + "\n");
+                    } catch (IOException ioException){
+                        System.out.println("Failed to write to the error file: " + ioException.getMessage());
                     }
   
                 }

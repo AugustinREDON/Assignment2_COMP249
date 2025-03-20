@@ -2,7 +2,6 @@
                                 -----------------------
 Employee Number      First name      Last Name       Gross salary    Deductions      Net salary     
 -------------------------------------------------------------------------------------------------------
-1.0                  Jacob           Paterak         $14508.00       $6664.10        $7843.90       
 2.0                  Emily           Johnson         $42640.00       $11484.66       $31155.34      
 3.0                  Michael         Smith           $22210.50       $5982.18        $16228.32      
 4.0                  Sophia          Martinez        $34710.00       $9348.79        $25361.21      
