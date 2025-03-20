@@ -10,8 +10,6 @@ class MinimumWageException extends Exception{
 public class Main {
 
     public static void main(String[] args)throws FileNotFoundException,IOException{
-        System.out.println("Test");
-
 
         BufferedReader br = new BufferedReader(new FileReader("payroll.txt"));
         BufferedWriter bw = new BufferedWriter(new FileWriter("payrollReport.txt"));
@@ -27,7 +25,6 @@ public class Main {
 
         //File Paths
         String filePath = "payroll.txt";
-        String reportPath = "payrollReport.txt";
         String errorFile = "payrollError.txt";
 
 
@@ -61,11 +58,12 @@ public class Main {
                     double HourlyWage = lineScanner.nextDouble();
 
                     if(HourlyWage  < 15.75){
+                        lineScanner.close();
                         throw new MinimumWageException("Error: " + EmployeeFirstName + " " + EmployeeLastName + "is paid below minimum wage.");
                     }
 
                     employees[count++] = new Employee(EmployeeNumber, EmployeeFirstName, EmployeeLastName, HourlyWage, HoursWorked);
-                    //employees[count++] = emp;
+                    lineScanner.close();
                 } catch (Exception e){
                     errorLinesRead++;
                    if(caught)
@@ -116,6 +114,7 @@ public class Main {
             System.out.println(errorLinesRead + " Lines written to error file");
             System.out.println("Payroll processing completed. Check payrollReport.txt and payrollError.txt");
             
+            Error.close();
             bwError.close();
             sc.close();
         } catch(FileNotFoundException e){
