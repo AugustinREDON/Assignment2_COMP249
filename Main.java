@@ -64,7 +64,7 @@ public class Main {
                     //employees[count++] = emp;
                 } catch (Exception e){
                     try{
-                        bwError.write(line + "\n");
+                        bwError.write(line.toUpperCase() + "\n");
                     } catch (IOException ioException){
                         System.out.println("Failed to write to the error file: " + ioException.getMessage());
                     }
@@ -99,7 +99,7 @@ public class Main {
 
                 // Write to report file
                 bw.write(String.format("%-20s %-15s %-15s $%-14.2f $%-14.2f $%-14.2f\n",
-                    emp.getEmployeeId(), emp.getFirstName(), emp.getLastName(),
+                    emp.getEmployeeId(), emp.getFirstName().toUpperCase(), emp.getLastName().toUpperCase(),
                     emp.getGrossSalary(), totalDeductions, netSalary));
           
             }
