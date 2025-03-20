@@ -1,3 +1,9 @@
- iDroid Solutions
-Employee Number	 First Name	 Last Name	 Gross salary	 Deductions	 Net salary
---------------------------------------------------------------------------------------------------------------------1	Jacob	Paterak	14508.0
+                                  iDroid Solutions
+                                -----------------------
+Employee Number      First name      Last Name       Gross salary    Deductions      Net salary     
+-------------------------------------------------------------------------------------------------------
+2.0                  EMILY           JOHNSON         $42640.00       $11484.66       $31155.34      
+3.0                  MICHAEL         SMITH           $22210.50       $5982.18        $16228.32      
+4.0                  SOPHIA          MARTINEZ        $34710.00       $9348.79        $25361.21      
+5.0                  DANIEL          BROWN           $36550.80       $9844.59        $26706.21      
+6.0                  OLIVIA          WILSON          $18200.00       $2353.99        $15846.01      

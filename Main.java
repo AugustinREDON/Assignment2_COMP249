@@ -20,6 +20,8 @@ public class Main {
 
         Employee[] employees = new Employee[10];
         int count = 0;
+        int totalLinesRead = -1;
+        int errorLinesRead = -1;
 
 
         //File Paths
@@ -46,8 +48,8 @@ public class Main {
 
             while(sc.hasNextLine()) {
                 String line = sc.nextLine();
+                totalLinesRead++;
                 try {
-
                     Scanner lineScanner = new Scanner(line);
                     lineScanner.useDelimiter("\\s+");
                     Long EmployeeNumber = lineScanner.nextLong();
@@ -63,6 +65,7 @@ public class Main {
                     employees[count++] = new Employee(EmployeeNumber, EmployeeFirstName, EmployeeLastName, HourlyWage, HoursWorked);
                     //employees[count++] = emp;
                 } catch (Exception e){
+                    errorLinesRead++;
                     try{
                         bwError.write(line.toUpperCase() + "\n");
                     } catch (IOException ioException){
@@ -103,7 +106,8 @@ public class Main {
                     emp.getGrossSalary(), totalDeductions, netSalary));
           
             }
-
+            System.out.println(totalLinesRead + " Lines read from file payroll");
+            System.out.println(errorLinesRead + " Lines written to error file");
             System.out.println("Payroll processing completed. Check payrollReport.txt and payrollError.txt");
             
             bwError.close();
