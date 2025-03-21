@@ -1,3 +1,8 @@
+//
+// Assignment 2
+// Written by: Augustin Redon 40240986 - 
+//
+
 import java.util.Scanner;
 import java.io.*;
 
