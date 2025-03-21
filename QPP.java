@@ -1,6 +1,6 @@
 //--------------------------------------
 // Assignment 2
-// Written by: Augustin Redon 40240986 - 
+// Written by: Augustin Redon 40240986 - Jacob Paterak 40268958
 //--------------------------------------
 
 // QPP class that extends the Deductions abstract class

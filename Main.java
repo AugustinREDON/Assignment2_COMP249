@@ -1,6 +1,6 @@
 //--------------------------------------
 // Assignment 2
-// Written by: Augustin Redon 40240986 - 
+// Written by: Augustin Redon 40240986 - Jacob Paterak 40268958
 //--------------------------------------
 
 import java.util.Scanner;
@@ -115,7 +115,6 @@ public class Main {
                 // Calculate total deductions
                 double totalDeductions = ei.calculateTax() + qpp.calculateTax() +
                         qpip.calculateTax() + provTax.calculateTax() + fedTax.calculateTax();
-
                 // Calculate net salary
                 double netSalary = emp.getGrossSalary() - totalDeductions;
 

@@ -1,6 +1,6 @@
 //--------------------------------------
 // Assignment 2
-// Written by: Augustin Redon 40240986 - 
+// Written by: Augustin Redon 40240986 - Jacob Paterak 40268958
 //--------------------------------------
 
 // Employee class to represent an employee's details and calculate their gross salary
